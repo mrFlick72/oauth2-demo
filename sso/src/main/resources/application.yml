@@ -1,0 +1,36 @@
+
+security:
+  oauth2:
+    client:
+     clientId: client
+     clientSecret: secret
+     accessTokenUri: http://localhost:9090/auth/oauth/token
+     userAuthorizationUri: http://localhost:9090/auth/oauth/authorize
+     auto-approve-scopes: '.*'
+     registered-redirect-uri: http://localhost:9090/auth/login
+     clientAuthenticationScheme: form
+    resource:
+      user-info-uri: http://localhost:9090/auth/account/user-info
+      prefer-token-info: false
+
+
+management.endpoints.web.exposure.include: "*"
+server:
+  use-forward-headers: true
+  port: 8080
+
+zuul:
+  sensitiveHeaders:
+  ignoredServices: '*'
+  ignoreSecurityHeaders: false
+  addHostHeader: true
+  routes:
+    hello-service:
+      serviceId: hello-service
+      path: /hello-service/**
+      url: http://localhost:4040/
+
+proxy:
+  auth:
+    routes:
+      hello-service: oauth2

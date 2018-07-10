@@ -1,0 +1,12 @@
+server:
+  use-forward-headers: true
+  port: 9090
+  servlet:
+    context-path: /auth
+
+
+management.endpoints.web.exposure.include: "*"
+
+spring:
+  application:
+    name: authentication-server
