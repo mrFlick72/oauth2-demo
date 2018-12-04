@@ -2,8 +2,11 @@
 security:
   oauth2:
     resource:
+#      jwt:
+#        key-value: 123
       user-info-uri: http://localhost:9090/auth/account/user-info
       prefer-token-info: false
+
 
 management.endpoints.web.exposure.include: "*"
 server:
